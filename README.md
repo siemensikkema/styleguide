@@ -125,7 +125,7 @@ Configuring your application correctly is one of the most important parts of a s
 
 ### Files
 
-There are 6 files you should have:
+Depending on your application you should have some or all of the following files:
 
 - app.swift (use the default template version)
 - boot.swift (use the default template version)
@@ -188,7 +188,7 @@ You should call this function from `configure.swift` like this:
     services.register(commandsConfig)
 ```
 
-> If your app doesn't use custom `Command`s you can ommit this file.
+> If your app doesn't use custom `Command`s you can omit this file.
 
 ### content.swift
 
@@ -218,7 +218,7 @@ You should call this function from `configure.swift` like this:
     services.register(contentConfig)
 ```
 
-> If you don't customize the content configuration you can ommit this file.
+> If you don't customize the content configuration you can omit this file.
 
 ### databases.swift
 
@@ -251,7 +251,7 @@ And then call this function from `configure.swift` like this:
     services.register(databasesConfig)
 ```
 
-> If your app doesn't use `Fluent` you can ommit this file.
+> If your app doesn't use `Fluent` you can omit this file.
 
 ### middlewares.swift
 
@@ -301,7 +301,7 @@ And then call this function from `configure.swift` like this:
 
 As you continue to add models to your application, make sure that you add them to the migration file as well.
 
-> If your app doesn't use `Fluent` you can ommit this file.
+> If your app doesn't use `Fluent` you can omit this file.
 
 ### repositories.swift
 
@@ -331,7 +331,7 @@ setupRepositories(services: &services, config: &config)
 
 For more information on the repository pattern, see the “Architecture” section.
 
-> If your app doesn't use `Fluent` you can ommit this file.
+> If your app doesn't use `Fluent` you can omit this file.
 
 # Credentials
 
@@ -992,13 +992,13 @@ throw Abort(.badRequest, reason: "Could not get data from external API.")
 ```
 
 # 3rd Party Providers 
-When building third party providers for Vapor, it's important to have a certain consistency that users will be able to become famaliar with when switching or adding new providers. Although Vapor is very young, there are already certain patterns that make sense when writing providers.
+When building third party providers for Vapor, it's important to have a certain consistency that users will be able to become familiar with when switching or adding new providers. Although Vapor is very young, there are already certain patterns that make sense when writing providers.
 
 ### Naming
-When naming a provider it's best to name the project itself that will be on github as part of the vapor community organization hyphenated with the extension `-provider`. For example if our provider is named `FooBar` then the project name would be named in the following way:
+When naming a provider it's best to name the project itself that will be on GitHub as part of the vapor community organization hyphenated with the extension `-provider`. For example if our provider is named `FooBar` then the project name would be named in the following way:
 `foo-bar-provider`.
 
-When creating a provider library, you should omit phrases like `Provder` or `Package`. Take the StripeProvider for example, while the name of the project itself can be named `StripeProvider` the library name should be just the product itself:
+When creating a provider library, you should omit phrases like `Provider` or `Package`. Take the StripeProvider for example, while the name of the project itself can be named `StripeProvider` the library name should be just the product itself:
 ```swift
 let package = Package(
     name: "StripeProvider",
@@ -1016,7 +1016,7 @@ This allows for easy to read and clean import statements:
 - Use `//MARK:` to denote sections of your controllers or configuration so that it is easier for other project members to find critically important areas.
 - Only import modules that are needed for that specific file. Adding extra modules creates bloat and makes it difficult to deduce that controller’s responsibility.
 - Where possible, use Swift doc-blocks to document methods. This is especially important for methods implements on entities so that other project members understand how the function affects persisted data.
-- Do not retrieve environment variables on a repeated basis. Instead, use a custom service and register those variables during the configuration stage of your application (see “Configuration”)
-- Reuse `DateFormatters` where possible (while also maintaining thread safety). In particular, don’t create a date formatter inside of a loop as they are incredibly expensive to make.
+- Do not retrieve environment variables on a repeated basis. Instead, use a custom service and register those variables during the configuration stage of your application (see “Configuration”).
+- Reuse `DateFormatters` where possible (while also maintaining thread safety). In particular, don’t create a date formatter inside of a loop as they are expensive to make.
 - Store dates in a computer-readable format until the last possible moment when they must be converted to human-readable strings. That conversion is typically very expensive and is unnecessary when passing dates around internally. Offloading this responsibility to JavaScript is a great tactic as well if you are building a front-end application.
-- Eliminate stringly-typed code where possible by storing frequently used strings in a file like `Constants.swift`
+- Eliminate stringly-typed code where possible by storing frequently used strings in a file like `Constants.swift`.
